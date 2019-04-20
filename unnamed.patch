@@ -1,0 +1,274 @@
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision )
++++ .idea/vcs.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: js/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- js/index.js	(revision 708478adec0ea2ac410acbbbe9dfeba0d3e8a148)
++++ js/index.js	(revision )
+@@ -1,14 +1,32 @@
+-let listBox = document.getElementById('list'),
+-    headBox = document.getElementById('head'),
+-    linkList =headBox.getElementsByTagName('a'),
+-    productList=listBox.getElementsByTagName('li');
+-
+ (function () {
+     let productData= null;
+-        xhr = new XMLHttpRequest;
++    let xhr = new XMLHttpRequest;
++    xhr.open('GET', 'json/product.json', false);
++    xhr.onreadystatechange = () => {
++        if (xhr.readyState === 4 || xhr.readyState === 200) {
++            productData = xhr.responseText;
++        }
++    };
++    xhr.send(null);
++    let str = ``;
++    let list = document.getElementById('list');
+ 
++    productData = JSON.parse(productData);
++    console.log(productData);
++    for (let i = 0; i < productData.length; i++) {
++        let {id, title, price, time, hot, img} = productData[i];
++        str += `<li >
++                <a href="javascript:;">
+ 
++                <img src="${img}">
++                    <p>"${title}"</p>
+ 
++                <span>${price}</span>
++                </a>
++            </li>`;
++    }
++
++    list.innerHTML = str;
+ })();
+ 
+-catch
+\ No newline at end of file
++
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/encodings.xml	(revision )
++++ .idea/encodings.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding">
++    <file url="file://$PROJECT_DIR$/js/index.js" charset="UTF-8" />
++  </component>
++</project>
+\ No newline at end of file
+Index: css/index.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- css/index.css	(revision 708478adec0ea2ac410acbbbe9dfeba0d3e8a148)
++++ css/index.css	(revision )
+@@ -1,10 +1,11 @@
+ html,body{
+     width:100%;
+     overflow: auto;
+-    background: #ffffff;
++    background: opacity: 0;
+     font-family: Consolas;
+ }
+ .head{
++
+     width: 100%;
+     background: #24292e;
+     line-height: 50px;
+@@ -18,7 +19,7 @@
+     color: #FFF;
+ }
+ .head a{
+-    position: relative;
++
+     color: #FFF;
+     overflow: scroll;
+ }
+@@ -26,11 +27,13 @@
+     color: #909090;
+ }
+ .list li{
++
+     margin-left: 20px;
+     padding: 20px;
+-    width: 193px;
++    width: 120px;
+     float: left;
+-    display: inline-block;
++    position: relative;
++    display: block;
+ }
+ .list li a{
+     display: block;
+Index: json/product.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- json/product.json	(revision )
++++ json/product.json	(revision )
+@@ -0,0 +1,82 @@
++[
++  {
++    "id": 1,
++    "title": "HUAWEI Mate 10 4GB+64GB 全网通版（亮黑色）",
++    "price": 3899,
++    "time": "2017-03-15",
++    "hot": 198,
++    "img": "img/1.jpg"
++  },
++  {
++    "id": 2,
++    "title": "HUAWEI 麦芒6 4GB+64GB 全网通版（曜石黑）",
++    "price": 2399,
++    "time": "2017-02-08",
++    "hot": 25,
++    "img": "img/2.jpg"
++  },
++  {
++    "id": 3,
++    "title": "华为畅享7 2GB+16GB 全网通标配版（香槟金）",
++    "price": 899,
++    "time": "2017-01-25",
++    "hot": 568,
++    "img": "img/3.jpg"
++  },
++  {
++    "id": 4,
++    "title": "HUAWEI nova 2 Plus 4GB+64GB 全网通版（曜石黑）",
++    "price": 2399,
++    "time": "2016-12-30",
++    "hot": 20000,
++    "img": "img/4.jpg"
++  },
++  {
++    "id": 5,
++    "title": "HUAWEI nova 2 4GB+64GB 全网通版（玫瑰金）",
++    "price": 2199,
++    "time": "2016-01-30",
++    "hot": 1032654,
++    "img": "img/5.jpg"
++  },
++  {
++    "id": 6,
++    "title": "华为畅享7 Plus 4GB+64GB 全网通高配版（香槟金）",
++    "price": 1699,
++    "time": "2018-01-01",
++    "hot": 1,
++    "img": "img/6.jpg"
++  },
++  {
++    "id": 7,
++    "title": "HUAWEI nova 青春版 4GB+64GB 全网通版（樱语粉）",
++    "price": 1799,
++    "time": "2017-02-19",
++    "hot": 400,
++    "img": "img/7.jpg"
++  },
++  {
++    "id": 8,
++    "title": "HUAWEI P10 4GB+64GB 全网通版（曜石黑）",
++    "price": 3488,
++    "time": "2017-01-25",
++    "hot": 240,
++    "img": "img/8.jpg"
++  },
++  {
++    "id": 9,
++    "title": "HUAWEI P10 Plus 6GB+128GB 全网通版（钻雕金）",
++    "price": 4488,
++    "time": "2014-01-01",
++    "hot": 12345678,
++    "img": "img/9.jpg"
++  },
++  {
++    "id": 10,
++    "title": "HUAWEI Mate 9 保时捷设计 6GB+256GB 全网通版（曜石黑）",
++    "price": 8999,
++    "time": "2014-01-01",
++    "hot": 12345678,
++    "img": "img/10.jpg"
++  }
++]
+\ No newline at end of file
+Index: index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- index.html	(revision 708478adec0ea2ac410acbbbe9dfeba0d3e8a148)
++++ index.html	(revision )
+@@ -5,6 +5,14 @@
+     <title>商城页面</title>
+     <link rel="stylesheet" href="css/reset.min.css">
+     <link rel="stylesheet" href="css/index.css">
++    <style>
++        html {
++            background-image: url("https://mobike.com/cn/assets/themes/moby/img/landing/hero-bg-4.jpg");
++            background-repeat: no-repeat;
++            background-position-x: 100%;
++            background-size: auto;
++        }
++    </style>
+ </head>
+ <body>
+     <div class="container">
+@@ -15,35 +23,10 @@
+             <a href="javascript:;">热度</a>
+         </div>
+         <ul class="list" id="list">
+-            <li >
+-                <a href="javascript:;">
+ 
+-                <img src="img/1.jpg">
+-                    <p>HUAWEI Mate 10 4GB+64GB 全网通版（亮黑色）</p>
+-
+-                <span>￥3899</span>
+-                </a>
+-            </li>
+-            <li >
+-                <a href="javascript:;">
+-
+-                    <img src="img/1.jpg">
+-                    <p>HUAWEI Mate 10 4GB+64GB 全网通版（亮黑色）</p>
+-
+-                    <span>￥3899</span>
+-                </a>
+-            </li>
+-            <li >
+-                <a href="javascript:;">
+-
+-                    <img src="img/1.jpg">
+-                    <p>HUAWEI Mate 10 4GB+64GB 全网通版（亮黑色）</p>
+-
+-                    <span>￥3899</span>
+-                </a>
+-            </li>
+         </ul>
+     </div>
+ 
+ </body>
++<script type="text/javascript" src="js/index.js"></script>
+ </html>
+\ No newline at end of file

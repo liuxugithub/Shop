@@ -1,10 +1,11 @@
 html,body{
     width:100%;
     overflow: auto;
-    background: #ffffff;
+    background: opacity: 0;
     font-family: Consolas;
 }
 .head{
+
     width: 100%;
     background: #24292e;
     line-height: 50px;
@@ -18,7 +19,7 @@ html,body{
     color: #FFF;
 }
 .head a{
-    position: relative;
+
     color: #FFF;
     overflow: scroll;
 }
@@ -26,11 +27,13 @@ html,body{
     color: #909090;
 }
 .list li{
+
     margin-left: 20px;
     padding: 20px;
-    width: 193px;
+    width: 120px;
     float: left;
-    display: inline-block;
+    position: relative;
+    display: block;
 }
 .list li a{
     display: block;
